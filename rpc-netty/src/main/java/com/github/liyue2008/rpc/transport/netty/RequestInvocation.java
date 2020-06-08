@@ -39,10 +39,13 @@ public class RequestInvocation extends SimpleChannelInboundHandler<Command> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, Command request) throws Exception {
+        // 根据请求类型获取注册的RequestHandler
         RequestHandler handler = requestHandlerRegistry.get(request.getHeader().getType());
         if(null != handler) {
+            // 处理请求
             Command response = handler.handle(request);
             if(null != response) {
+                // 将处理结果发送给客户端
                 channelHandlerContext.writeAndFlush(response).addListener((ChannelFutureListener) channelFuture -> {
                     if (!channelFuture.isSuccess()) {
                         logger.warn("Write response failed!", channelFuture.cause());

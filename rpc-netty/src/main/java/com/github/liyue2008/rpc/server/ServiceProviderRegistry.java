@@ -18,5 +18,13 @@ package com.github.liyue2008.rpc.server;
  * Date: 2019/9/29
  */
 public interface ServiceProviderRegistry {
+
+    /**
+     * 添加RPC服务
+     *
+     * @param serviceClass
+     * @param serviceProvider
+     * @param <T>
+     */
     <T> void addServiceProvider(Class<? extends T> serviceClass, T serviceProvider);
 }

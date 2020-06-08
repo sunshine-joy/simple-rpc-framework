@@ -18,8 +18,20 @@ package com.github.liyue2008.rpc.client.stubs;
  * Date: 2019/9/27
  */
 public class RpcRequest {
+
+    /**
+     * 接口名
+     */
     private final String interfaceName;
+
+    /**
+     * 方法名
+     */
     private final String methodName;
+
+    /**
+     * 序列化后的参数
+     */
     private final byte [] serializedArguments;
 
     public RpcRequest(String interfaceName, String methodName, byte[] serializedArguments) {

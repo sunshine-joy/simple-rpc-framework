@@ -18,16 +18,31 @@ package com.github.liyue2008.rpc.transport.command;
  * Date: 2019/9/20
  */
 public class Header {
+
+    /**
+     * 请求Id
+     */
     private int requestId;
+
+    /**
+     * 版本
+     */
     private int version;
+
+    /**
+     * 类型
+     */
     private int type;
 
-    public Header() {}
+    public Header() {
+    }
+
     public Header(int type, int version, int requestId) {
         this.requestId = requestId;
         this.type = type;
         this.version = version;
     }
+
     public int getRequestId() {
         return requestId;
     }
@@ -48,11 +63,17 @@ public class Header {
         return type;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    /**
+     * length
+     *
+     * @return
+     */
     public int length() {
         return Integer.BYTES + Integer.BYTES + Integer.BYTES;
     }
 
-    public void setType(int type) {
-        this.type = type;
-    }
 }
