@@ -25,14 +25,18 @@ import java.io.IOException;
 import java.net.URI;
 
 /**
+ * RPC客户端
  * @author LiYue
  * Date: 2019/9/20
  */
 public class Client {
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
     public static void main(String [] args) throws IOException {
+        // HelloService类规范名称
         String serviceName = HelloService.class.getCanonicalName();
+        // URI create
         URI nameServiceUri = URI.create("jdbc:hsqldb:hsql://localhost/nameservice");
+        // 账号密码
         System.setProperty("nameservice.jdbc.username", "SA");
         System.setProperty("nameservice.jdbc.password", "");
         String name = "Master MQ";
