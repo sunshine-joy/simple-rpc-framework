@@ -2,9 +2,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -21,25 +21,29 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.Closeable;
-import java.io.File;
 import java.net.URI;
 
 /**
+ * 服务器端
  * @author LiYue
  * Date: 2019/9/20
  */
 public class Server {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
-    public static void main(String [] args) throws Exception {
 
+    public static void main(String[] args) throws Exception {
+        // 获取HelloService规范名称
         String serviceName = HelloService.class.getCanonicalName();
+        // URI create
         URI nameServiceUri = URI.create("jdbc:hsqldb:hsql://localhost/nameservice");
+        // 账号密码
         System.setProperty("nameservice.jdbc.username", "SA");
         System.setProperty("nameservice.jdbc.password", "");
+        // 创建HelloService实现类
         HelloService helloService = new HelloServiceImpl();
         logger.info("创建并启动RpcAccessPoint...");
-        try(RpcAccessPoint rpcAccessPoint = ServiceSupport.load(RpcAccessPoint.class);
-            Closeable ignored = rpcAccessPoint.startServer()) {
+        try (RpcAccessPoint rpcAccessPoint = ServiceSupport.load(RpcAccessPoint.class);
+             Closeable ignored = rpcAccessPoint.startServer()) {
             NameService nameService = rpcAccessPoint.getNameService(nameServiceUri);
             assert nameService != null;
             logger.info("向RpcAccessPoint注册{}服务...", serviceName);
