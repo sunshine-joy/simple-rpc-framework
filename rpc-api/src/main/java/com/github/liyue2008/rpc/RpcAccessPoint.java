@@ -54,9 +54,12 @@ public interface RpcAccessPoint extends Closeable {
      * @return 注册中心引用
      */
     default NameService getNameService(URI nameServiceUri) {
+        // SPI方式获取注册中心的引用
         Collection<NameService> nameServices = ServiceSupport.loadAll(NameService.class);
         for (NameService nameService : nameServices) {
+            // 找到匹配scheme的注册中心引用
             if (nameService.supportedSchemes().contains(nameServiceUri.getScheme())) {
+                // 连接注册中心
                 nameService.connect(nameServiceUri);
                 return nameService;
             }

@@ -154,7 +154,7 @@
 
     </build>
     <profiles>
-        <profile >
+        <profile>
             <id>license</id>
             <build>
                 <plugins>

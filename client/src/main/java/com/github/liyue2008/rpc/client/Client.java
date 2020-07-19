@@ -43,9 +43,7 @@ public class Client {
         String name = "Master MQ";
 
         /**
-         * 在ServiceLoader.load的时候，根据传入的接口类，
-         * 遍历META-INF/services目录下的以该类命名的文件中的所有类，并实例化返回。
-         * 实际获取 NettyRpcAccessPoint 的实例
+         * SPI方式获取PRC框架对外提供服务的实例
          */
         try (RpcAccessPoint rpcAccessPoint = ServiceSupport.load(RpcAccessPoint.class)) {
             // 获取注册中心的引用
@@ -55,8 +53,10 @@ public class Client {
             URI uri = nameService.lookupService(serviceName);
             assert uri != null;
             logger.info("找到服务{}，提供者: {}.", serviceName, uri);
+            // 获取远程服务的引用
             HelloService helloService = rpcAccessPoint.getRemoteService(uri, HelloService.class);
             logger.info("请求服务, name: {}...", name);
+            // 请求服务
             String response = helloService.hello(name);
             logger.info("收到响应: {}.", response);
         }
