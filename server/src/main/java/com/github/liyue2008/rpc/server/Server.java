@@ -42,13 +42,20 @@ public class Server {
         // 创建HelloService实现类
         HelloService helloService = new HelloServiceImpl();
         logger.info("创建并启动RpcAccessPoint...");
+        /**
+         * 在ServiceLoader.load的时候，根据传入的接口类，
+         * 遍历META-INF/services目录下的以该类命名的文件中的所有类，并实例化返回。
+         * 实际获取 NettyRpcAccessPoint 的实例
+         */
         try (RpcAccessPoint rpcAccessPoint = ServiceSupport.load(RpcAccessPoint.class);
              Closeable ignored = rpcAccessPoint.startServer()) {
+            // 获取nameService
             NameService nameService = rpcAccessPoint.getNameService(nameServiceUri);
             assert nameService != null;
             logger.info("向RpcAccessPoint注册{}服务...", serviceName);
             URI uri = rpcAccessPoint.addServiceProvider(helloService, HelloService.class);
             logger.info("服务名: {}, 向NameService注册...", serviceName);
+            // 向NameService注册
             nameService.registerService(serviceName, uri);
             logger.info("开始提供服务，按任何键退出.");
             //noinspection ResultOfMethodCallIgnored

@@ -36,6 +36,8 @@ import java.util.Map;
 @Singleton
 public class RpcRequestHandler implements RequestHandler, ServiceProviderRegistry {
     private static final Logger logger = LoggerFactory.getLogger(RpcRequestHandler.class);
+
+    // 服务提供者集合 key is service name, value is service provider
     private Map<String/*service name*/, Object/*service provider*/> serviceProviders = new HashMap<>();
 
     @Override

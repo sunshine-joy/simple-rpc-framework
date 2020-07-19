@@ -2,9 +2,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,6 +14,8 @@
 package com.github.liyue2008.rpc.client.stubs;
 
 /**
+ * RPC请求实体类
+ *
  * @author LiYue
  * Date: 2019/9/27
  */
@@ -32,7 +34,7 @@ public class RpcRequest {
     /**
      * 序列化后的参数
      */
-    private final byte [] serializedArguments;
+    private final byte[] serializedArguments;
 
     public RpcRequest(String interfaceName, String methodName, byte[] serializedArguments) {
         this.interfaceName = interfaceName;
