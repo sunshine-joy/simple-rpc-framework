@@ -24,6 +24,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- rpc业务应用客户端 -->
     <artifactId>client</artifactId>
 
     <dependencies>

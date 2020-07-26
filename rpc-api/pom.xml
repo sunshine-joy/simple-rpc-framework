@@ -24,6 +24,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- rpc框架的接口 -->
     <artifactId>rpc-api</artifactId>
 
 

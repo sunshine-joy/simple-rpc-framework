@@ -9,9 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- jdbc方式的注册中心服务的实现 -->
     <artifactId>jdbc-nameservice</artifactId>
-    <dependencies>
 
+    <dependencies>
+        <!-- rpc框架的接口 -->
         <dependency>
             <groupId>com.github.liyue2008</groupId>
             <artifactId>rpc-api</artifactId>

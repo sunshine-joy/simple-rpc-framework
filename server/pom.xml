@@ -24,6 +24,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- rpc业务应用服务器端 -->
     <artifactId>server</artifactId>
 
     <dependencies>

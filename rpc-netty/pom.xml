@@ -24,9 +24,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- rpc框架的接口的实现 -->
     <artifactId>rpc-netty</artifactId>
-    <dependencies>
 
+    <dependencies>
+        <!-- rpc框架的接口 -->
         <dependency>
             <groupId>com.github.liyue2008</groupId>
             <artifactId>rpc-api</artifactId>

@@ -24,6 +24,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 业务应用的接口 -->
     <artifactId>hello-service-api</artifactId>
 
 
