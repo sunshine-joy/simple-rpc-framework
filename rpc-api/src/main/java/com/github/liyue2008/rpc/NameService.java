@@ -48,7 +48,7 @@ public interface NameService {
     void registerService(String serviceName, URI uri) throws IOException;
 
     /**
-     * 查询服务地址
+     * 查询服务
      *
      * @param serviceName 服务名称
      * @return 服务地址

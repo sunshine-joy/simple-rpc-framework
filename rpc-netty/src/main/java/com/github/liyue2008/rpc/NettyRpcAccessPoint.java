@@ -2,9 +2,9 @@
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,6 +29,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * RPC框架对外提供的服务接口的实现
+ *
  * @author LiYue
  * Date: 2019/9/20
  */
@@ -42,6 +44,14 @@ public class NettyRpcAccessPoint implements RpcAccessPoint {
     private final StubFactory stubFactory = ServiceSupport.load(StubFactory.class);
     private final ServiceProviderRegistry serviceProviderRegistry = ServiceSupport.load(ServiceProviderRegistry.class);
 
+    /**
+     * 客户端获取远程服务的引用（桩）
+     *
+     * @param uri          远程服务地址
+     * @param serviceClass 服务的接口类的Class
+     * @param <T>服务接口的类型
+     * @return 远程服务引用（桩）
+     */
     @Override
     public <T> T getRemoteService(URI uri, Class<T> serviceClass) {
         Transport transport = clientMap.computeIfAbsent(uri, this::createTransport);
@@ -50,11 +60,12 @@ public class NettyRpcAccessPoint implements RpcAccessPoint {
 
     private Transport createTransport(URI uri) {
         try {
-            return client.createTransport(new InetSocketAddress(uri.getHost(), uri.getPort()),30000L);
+            return client.createTransport(new InetSocketAddress(uri.getHost(), uri.getPort()), 30000L);
         } catch (InterruptedException | TimeoutException e) {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public synchronized <T> URI addServiceProvider(T service, Class<T> serviceClass) {
         serviceProviderRegistry.addServiceProvider(serviceClass, service);
@@ -69,7 +80,7 @@ public class NettyRpcAccessPoint implements RpcAccessPoint {
 
         }
         return () -> {
-            if(null != server) {
+            if (null != server) {
                 server.stop();
             }
         };
@@ -77,7 +88,7 @@ public class NettyRpcAccessPoint implements RpcAccessPoint {
 
     @Override
     public void close() {
-        if(null != server) {
+        if (null != server) {
             server.stop();
         }
         client.close();
