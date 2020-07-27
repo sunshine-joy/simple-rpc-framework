@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
+ * 以HSQLDB为数据库实现的
  * JdbcNameService
  *
  * @author LiYue
