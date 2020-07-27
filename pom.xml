@@ -29,6 +29,7 @@
         <module>hello-service-api</module>
         <module>rpc-netty</module>
         <module>jdbc-nameservice</module>
+        <module>mysql-nameservice</module>
     </modules>
     <packaging>pom</packaging>
     <name>Simple RPC Framework</name>
